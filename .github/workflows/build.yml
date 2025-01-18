@@ -19,3 +19,12 @@ jobs:
         run: npm install && npm run build && npm run setup:v11
       - name: Test
         run: npm run test
+  v11_force:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Setup
+        run: npm install && npm run build && npm run setup:v11:force
+      - name: Test
+        run: npm run test

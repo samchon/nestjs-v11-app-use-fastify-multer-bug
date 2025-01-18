@@ -1,6 +1,15 @@
-Reproducing bug of NestJS v11 with `fastify-multer`.
+Reproducing bug of `@nestjs/platform-fastify`.
 
-When using `fastify-multer` library with NestJS, there had not been any yproblem until NestJS v10. However, since v11 update, `fastify-multer` suddenly be broken.
+When install NestJS v11, its `@nestjs/platform-fastify` has a wrong `peerDependency` to the `@nestjs/core` that referencing the previous major version `10.0.1`.
+
+```bash
+npm warn Could not resolve dependency:
+npm warn peer @nestjs/common@"^10.0.0" from @nestjs/platform-fastify@11.0.1
+npm warn node_modules/@nestjs/platform-fastify
+npm warn   @nestjs/platform-fastify@"11" from the root project
+```
+
+If I ignore the bug and try to set it up with the `npm install --force` option, it breaks the `NestFastifyApplication.use()` function like below.
 
 ```typescript
 import { NestFactory } from "@nestjs/core";
@@ -50,20 +59,24 @@ main().catch((error) => {
 > }
 > ```
 
-Here is the reproducible script of such bug.
+Here is the reproducible script of such bugs.
 
 No bug occurs in the `setup:v10` mode, but `setup:v11` mode makes above bug.
 
 ```bash
-git clone https://github.com/samchon/nestjs-v11-app-use-fastify-multer-bug
+# CLONE
+git clone https://github.com/samchon/nestjs-v11-platform-fastify-dependency-bug
+cd nestjs-v11-platform-fastify-dependency-bug
+
+# WORKING PROPERTY IN V10
 npm install
 npm run build
-
-# WORKING PROPERLY
-npm run setup:v10
 npm run test
 
-# ERROR OCCURES
+# FAILED TO SETUP IN V11
 npm run setup:v11
+
+# FORCE SETUP OCCURS RUNTIME ERROR
+npm run setup:v11:force
 npm run test
 ```
