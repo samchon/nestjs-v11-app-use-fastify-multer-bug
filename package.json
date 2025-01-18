@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "nestjs-v11-app-use-fastify-multer-bug",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "setup:v10": "npm i --force @nestjs/common@10 @nestjs/core@10 @nestjs/platform-fastify@10",
+    "setup:v11": "npm i --force @nestjs/common@11 @nestjs/core@11 @nestjs/platform-fastify@11",
+    "test": "node bin",
+    "prepare": "ts-patch install && typia patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samchon/nestjs-v11-app-use-fastify-multer-bug"
+  },
+  "author": "Jeongho Nam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samchon/nestjs-v11-app-use-fastify-multer-bug/issues"
+  },
+  "homepage": "https://github.com/samchon/nestjs-v11-app-use-fastify-multer-bug#readme",
+  "description": "NestJS v11 error reproducing project",
+  "devDependencies": {
+    "@nestia/benchmark": "^0.3.0",
+    "@nestia/sdk": "^4.6.0",
+    "nestia": "^6.3.1",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.3.0",
+    "typescript": "~5.7.2"
+  },
+  "dependencies": {
+    "@nestia/core": "^4.6.0",
+    "@nestia/e2e": "^0.7.0",
+    "@nestia/fetcher": "^4.6.0",
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/platform-fastify": "^11.0.1",
+    "fastify-multer": "^2.0.3",
+    "typia": "^7.6.0"
+  }
+}
